@@ -1,14 +1,14 @@
 [gd_scene load_steps=106 format=3 uid="uid://md4a4ogexonb"]
 
 [ext_resource type="Script" uid="uid://cnp4ss7dxcln0" path="res://Scenes/Player.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dqgrvycxm87sb" path="res://Sprites/The Female Adventurer - Free/Idle/Idle_Down.png" id="2_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://bmlkqs7grfrdn" path="res://Sprites/The Female Adventurer - Free/Idle/Idle_Left_Down.png" id="3_vgqql"]
-[ext_resource type="Texture2D" uid="uid://bb37bdhhupb70" path="res://Sprites/The Female Adventurer - Free/Idle/Idle_Right_Down.png" id="4_fkybt"]
-[ext_resource type="Texture2D" uid="uid://wuruc5r5puj" path="res://Sprites/The Female Adventurer - Free/Idle/Idle_Up.png" id="5_fkybt"]
-[ext_resource type="Texture2D" uid="uid://l8nox614lade" path="res://Sprites/The Female Adventurer - Free/Walk/walk_Down.png" id="6_3smsa"]
-[ext_resource type="Texture2D" uid="uid://c3iun5ge7b6l2" path="res://Sprites/The Female Adventurer - Free/Walk/walk_Left_Down.png" id="7_8erm5"]
-[ext_resource type="Texture2D" uid="uid://dlvooxbcwtniw" path="res://Sprites/The Female Adventurer - Free/Walk/walk_Right_Down.png" id="8_f1ek2"]
-[ext_resource type="Texture2D" uid="uid://bewfqdcmcfslt" path="res://Sprites/The Female Adventurer - Free/Walk/walk_Up.png" id="9_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://dqgrvycxm87sb" path="res://Art/Sprites/The Female Adventurer - Free/Idle/Idle_Down.png" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://bmlkqs7grfrdn" path="res://Art/Sprites/The Female Adventurer - Free/Idle/Idle_Left_Down.png" id="3_vgqql"]
+[ext_resource type="Texture2D" uid="uid://bb37bdhhupb70" path="res://Art/Sprites/The Female Adventurer - Free/Idle/Idle_Right_Down.png" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://wuruc5r5puj" path="res://Art/Sprites/The Female Adventurer - Free/Idle/Idle_Up.png" id="5_fkybt"]
+[ext_resource type="Texture2D" uid="uid://l8nox614lade" path="res://Art/Sprites/The Female Adventurer - Free/Walk/walk_Down.png" id="6_3smsa"]
+[ext_resource type="Texture2D" uid="uid://c3iun5ge7b6l2" path="res://Art/Sprites/The Female Adventurer - Free/Walk/walk_Left_Down.png" id="7_8erm5"]
+[ext_resource type="Texture2D" uid="uid://dlvooxbcwtniw" path="res://Art/Sprites/The Female Adventurer - Free/Walk/walk_Right_Down.png" id="8_f1ek2"]
+[ext_resource type="Texture2D" uid="uid://bewfqdcmcfslt" path="res://Art/Sprites/The Female Adventurer - Free/Walk/walk_Up.png" id="9_tx1dd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(16, 27)
@@ -878,11 +878,10 @@ states/Walk/node = SubResource("AnimationNodeBlendTree_bi64h")
 states/Walk/position = Vector2(677, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2ijsl"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_p1odr"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_0gysh")]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("collider", "sprite", "animationTree")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("collider", "animationTree")]
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 collider = NodePath("CollisionShape2D")
-sprite = NodePath("")
 animationTree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

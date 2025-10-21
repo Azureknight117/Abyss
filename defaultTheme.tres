@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dv51qs8lkjk3x"]
+
+[ext_resource type="FontFile" uid="uid://b28huhm08put7" path="res://Art/Font/Silver.ttf" id="1_6pnpd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afl2d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2tpt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oy4al"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikkq6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pir5p"]
+
+[resource]
+Button/constants/h_separation = 4
+Button/constants/line_spacing = 0
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_6pnpd")
+Button/styles/disabled = SubResource("StyleBoxEmpty_afl2d")
+Button/styles/focus = SubResource("StyleBoxEmpty_v2tpt")
+Button/styles/hover = SubResource("StyleBoxEmpty_oy4al")
+Button/styles/normal = SubResource("StyleBoxEmpty_ikkq6")
+Button/styles/pressed = SubResource("StyleBoxEmpty_pir5p")
+VBoxContainer/constants/separation = -2
+VFlowContainer/constants/h_separation = 13
+VFlowContainer/constants/v_separation = 0
