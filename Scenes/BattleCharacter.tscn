@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0qn8sn36nei7"]
+
+[ext_resource type="Texture2D" uid="uid://c426ii7w3gysb" path="res://Art/Sprites/Temps/Royal_Guard_Female/idle_weapon_1.png" id="1_bhhmh"]
+
+[node name="Character" type="Sprite2D"]
+texture = ExtResource("1_bhhmh")
+flip_h = true

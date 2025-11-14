@@ -878,7 +878,7 @@ states/Walk/node = SubResource("AnimationNodeBlendTree_bi64h")
 states/Walk/position = Vector2(677, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2ijsl"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_p1odr"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_0gysh")]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("collider", "animationTree")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("collider", "animationTree") groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 collider = NodePath("CollisionShape2D")

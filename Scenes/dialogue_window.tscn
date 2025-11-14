@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://yuc2q5kpqwyc"]
+
+[ext_resource type="PackedScene" uid="uid://tl130k7qdv5h" path="res://Scenes/battle_window.tscn" id="1_v3x3v"]
+[ext_resource type="Script" uid="uid://ghsplcj7xxki" path="res://Scripts/DialogueWindow.cs" id="2_gax6d"]
+[ext_resource type="Theme" uid="uid://dv51qs8lkjk3x" path="res://defaultTheme.tres" id="2_td3r8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gax6d"]
+font_size = 8
+
+[node name="DialogueWindow" node_paths=PackedStringArray("textBox") instance=ExtResource("1_v3x3v")]
+offset_left = 15.0
+offset_top = 119.0
+offset_right = 308.0
+offset_bottom = 175.0
+script = ExtResource("2_gax6d")
+textBox = NodePath("Label2")
+
+[node name="Label2" type="Label" parent="." index="0"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 131.0
+offset_bottom = 29.0
+theme = ExtResource("2_td3r8")
+text = "This is a dialogue box"
+label_settings = SubResource("LabelSettings_gax6d")

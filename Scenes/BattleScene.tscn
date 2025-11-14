@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0v0syjdc11n3"]
+[gd_scene load_steps=9 format=3 uid="uid://d0v0syjdc11n3"]
 
 [ext_resource type="PackedScene" uid="uid://tl130k7qdv5h" path="res://Scenes/battle_window.tscn" id="1_12f34"]
 [ext_resource type="Theme" uid="uid://dv51qs8lkjk3x" path="res://defaultTheme.tres" id="1_hip74"]
+[ext_resource type="Script" uid="uid://cmocucu6de3oo" path="res://Scripts/BattleScene/BattleManager.cs" id="2_ahap6"]
 [ext_resource type="FontFile" uid="uid://5y3nmtey54s3" path="res://Art/Font/PixeloidMono.ttf" id="3_b2eky"]
+[ext_resource type="PackedScene" uid="uid://d0qn8sn36nei7" path="res://Scenes/BattleCharacter.tscn" id="5_hb1yk"]
+[ext_resource type="Texture2D" uid="uid://bgkpq7kit427c" path="res://Art/Sprites/Temps/rogues.png" id="6_8uoga"]
+[ext_resource type="PackedScene" uid="uid://csxwnf7sfcmot" path="res://Scenes/BattleEnemy.tscn" id="8_kwfy1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ahap6"]
 font = ExtResource("3_b2eky")
@@ -19,7 +23,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_hip74")
 
-[node name="Bottom" type="HBoxContainer" parent="."]
+[node name="BattleManager" type="Node2D" parent="." node_paths=PackedStringArray("options")]
+script = ExtResource("2_ahap6")
+options = NodePath("../Menu/Enemies/Options/MainActions")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 180.0
+color = Color(0.24705882, 0.12941177, 0.22352941, 1)
+
+[node name="Menu" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 48)
 layout_mode = 1
 anchors_preset = 7
@@ -28,149 +42,161 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -160.0
-offset_top = -60.0
+offset_top = -59.0
 offset_right = 160.0
-offset_bottom = -2.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_hip74")
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="Players" parent="Bottom" instance=ExtResource("1_12f34")]
+[node name="Players" parent="Menu" instance=ExtResource("1_12f34")]
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
 
-[node name="Label" type="Label" parent="Bottom/Players"]
+[node name="Description" type="Label" parent="Menu/Players"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = -24.0
+offset_top = -12.0
 offset_right = 184.0
-offset_bottom = -1.0
+offset_bottom = -2.0
 text = "This Tells you detailed  info for the selected action"
 label_settings = SubResource("LabelSettings_ahap6")
 vertical_alignment = 2
 
-[node name="Enemies" parent="Bottom" instance=ExtResource("1_12f34")]
-layout_mode = 2
-
-[node name="Options" parent="." instance=ExtResource("1_12f34")]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 120.0
-offset_right = 320.0
-offset_bottom = 178.0
-size_flags_stretch_ratio = 1.5
-
-[node name="MainActions" type="VBoxContainer" parent="Options"]
-visible = false
+[node name="Party" type="VBoxContainer" parent="Menu/Players"]
 layout_mode = 1
-offset_left = 8.0
+offset_left = 12.0
 offset_top = 6.0
-offset_right = 55.0
+offset_right = 59.0
 offset_bottom = 56.0
 
-[node name="Action" type="Button" parent="Options/MainActions"]
+[node name="Action" type="Button" parent="Menu/Players/Party"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+theme = ExtResource("1_hip74")
+text = "Player A"
+
+[node name="Action2" type="Button" parent="Menu/Players/Party"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("1_hip74")
+text = "Player B
+"
+
+[node name="Action3" type="Button" parent="Menu/Players/Party"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("1_hip74")
+text = "Player C
+"
+
+[node name="Enemies" parent="Menu" instance=ExtResource("1_12f34")]
+layout_mode = 2
+theme = ExtResource("1_hip74")
+
+[node name="Options" parent="Menu/Enemies" instance=ExtResource("1_12f34")]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 58.0
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("1_hip74")
+
+[node name="MainActions" type="VBoxContainer" parent="Menu/Enemies/Options"]
+visible = false
+layout_mode = 1
+offset_left = 39.0
+offset_top = 6.0
+offset_right = 86.0
+offset_bottom = 56.0
+
+[node name="Action" type="Button" parent="Menu/Enemies/Options/MainActions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("1_hip74")
 text = "Action
 "
 
-[node name="Cast" type="Button" parent="Options/MainActions"]
-visible = false
+[node name="Cast" type="Button" parent="Menu/Enemies/Options/MainActions"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+theme = ExtResource("1_hip74")
 text = "Cast
 "
 
-[node name="Guard" type="Button" parent="Options/MainActions"]
+[node name="Guard" type="Button" parent="Menu/Enemies/Options/MainActions"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+theme = ExtResource("1_hip74")
 text = "Guard
 "
 
-[node name="Item" type="Button" parent="Options/MainActions"]
+[node name="Item" type="Button" parent="Menu/Enemies/Options/MainActions"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+theme = ExtResource("1_hip74")
 text = "Item
 "
 
-[node name="Weapon Actions" type="VFlowContainer" parent="Options"]
+[node name="Weapon Actions" type="VFlowContainer" parent="Menu/Enemies/Options"]
+visible = false
 layout_mode = 0
 offset_left = 12.0
 offset_top = 6.0
 offset_right = 52.0
 offset_bottom = 52.0
 
-[node name="Action1" type="Button" parent="Options/Weapon Actions"]
+[node name="Action1" type="Button" parent="Menu/Enemies/Options/Weapon Actions"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+theme = ExtResource("1_hip74")
 text = "Thrust
 "
 
-[node name="Action2" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text_overrun_behavior = 2
+[node name="Party" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Action3" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
+[node name="CharacterA" parent="Party" instance=ExtResource("5_hb1yk")]
+position = Vector2(93, 20)
+texture = ExtResource("6_8uoga")
+hframes = 7
+vframes = 7
+frame = 24
 
-[node name="Action4" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
+[node name="CharacterB" parent="Party" instance=ExtResource("5_hb1yk")]
+position = Vector2(93, 60)
+texture = ExtResource("6_8uoga")
+hframes = 7
+vframes = 7
+frame = 3
 
-[node name="Action5" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
+[node name="CharacterC" parent="Party" instance=ExtResource("5_hb1yk")]
+position = Vector2(39, 95)
+texture = ExtResource("6_8uoga")
+hframes = 7
+vframes = 7
+frame = 16
 
-[node name="Action6" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
+[node name="Enemy" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 246.0
+offset_top = 17.0
+offset_right = 286.0
+offset_bottom = 57.0
 
-[node name="Action7" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
-
-[node name="Action8" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
-
-[node name="Action9" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
-
-[node name="Action10" type="Button" parent="Options/Weapon Actions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "Attack
-"
+[node name="Enemy" parent="Enemy" instance=ExtResource("8_kwfy1")]
+position = Vector2(-1, 28)

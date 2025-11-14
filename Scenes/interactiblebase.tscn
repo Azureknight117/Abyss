@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dipj286frhov4"]
+
+[ext_resource type="Script" uid="uid://dj5ha7tlrrbyt" path="res://Scenes/Interactiblebase.cs" id="1_qsftd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+
+[node name="Interactible" type="Area2D"]
+script = ExtResource("1_qsftd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 2)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -43,7 +43,6 @@ public partial class Player : CharacterBody2D
 
     public bool canMove { get; set; } = false;
 
-    public Vector2 screenSize;
 
     private Vector2 knockBack = Vector2.Zero;
     private bool canBeHit = true;
@@ -51,7 +50,6 @@ public partial class Player : CharacterBody2D
     private bool knockBacked = false;
 
     private CharacterBody2D knockBackSource;
-
 
     [Export]
     private AudioStreamPlayer2D bulletSfx;
@@ -62,9 +60,11 @@ public partial class Player : CharacterBody2D
     [Export]
     private AudioStreamPlayer2D dieSfx;
 
+
+    private Interactiblebase interactingObject;//Object the player can currently interact with (should only be one at a time)
+
     public override void _Ready()
     {
-        screenSize = GetViewportRect().Size;
         curHP = maxHP;
         canControl = true;
         canMove = true;
@@ -134,6 +134,14 @@ public partial class Player : CharacterBody2D
             {
                 //Shoot();
             }
+
+            if (Input.IsActionJustPressed("interact"))
+            {
+                if (interactingObject != null)
+                {
+                    interactingObject.TriggerInteraction();
+                }
+            }
             if (velocity.Length() > 0)
             {
                 velocity = velocity.Normalized();
@@ -153,6 +161,16 @@ public partial class Player : CharacterBody2D
         //Position += velocity * speed * (float)delta;
         return velocity * speed;
 
+    }
+
+    public void AddInteractible(Interactiblebase interactible)
+    {
+        interactingObject = interactible;
+    }
+
+    public void RemoveInteractible()
+    {
+        interactingObject = null;
     }
 
 

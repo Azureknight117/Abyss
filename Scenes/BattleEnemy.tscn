@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://csxwnf7sfcmot"]
+
+[ext_resource type="Texture2D" uid="uid://7pq02eyjtfqi" path="res://Art/Sprites/Temps/monsters.png" id="1_lixa3"]
+
+[node name="Enemy" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_lixa3")
+hframes = 12
+vframes = 13
+frame = 75
