@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3 uid="uid://c1ydkrruftnes"]
+
+[ext_resource type="Script" uid="uid://ddyqu0oqdadb5" path="res://Scripts/Resources/DialogueResource.cs" id="1_1g7fe"]
+
+[resource]
+script = ExtResource("1_1g7fe")
+dialogueLines = Array[String](["Greetings Traveler!", "What's Up?"])
+metadata/_custom_type_script = "uid://ddyqu0oqdadb5"

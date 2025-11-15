@@ -1,9 +1,14 @@
 using Godot;
 using System;
+using Godot.Collections;
+
 
 public partial class Interactiblebase : Area2D
 {
 	bool canBeInteracted = false;
+
+	[Export]
+	public DialogueResource dialogueResource;
 	public void _on_body_entered(Node2D body)
 	{
 		if (body.IsInGroup("Player"))
@@ -29,6 +34,6 @@ public partial class Interactiblebase : Area2D
 
 	public virtual void TriggerInteraction()
 	{
-		GameManager.Instance.ShowDialogueBox("Greetings traveler!");
+		GameManager.Instance.StartDialogue(dialogueResource);
 	}
 }

@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://xfsxp24bbsr2"]
+[gd_scene load_steps=11 format=3 uid="uid://xfsxp24bbsr2"]
 
 [ext_resource type="Script" uid="uid://db4b20hdc3uvp" path="res://Scripts/GameManager.cs" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://md4a4ogexonb" path="res://Scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cpbgaps1u3f8t" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://xt4l3jbehqyh" path="res://Scripts/DialogueManager.cs" id="2_272bh"]
 [ext_resource type="Texture2D" uid="uid://ckceed2evlnt1" path="res://Art/Sprites/Temps/Royal_Guard_Female/idle_1.png" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dipj286frhov4" path="res://Scenes/interactiblebase.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://yuc2q5kpqwyc" path="res://Scenes/dialogue_window.tscn" id="5_272bh"]
+[ext_resource type="Resource" uid="uid://c1ydkrruftnes" path="res://Scripts/Resources/TestDialogue.tres" id="7_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(128, 119.52356)
@@ -15,13 +17,18 @@ size = Vector2(12.666672, 18.000002)
 
 [node name="Main" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("dialogueWindow")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("dialogueManager")]
 script = ExtResource("1_7mycd")
+dialogueManager = NodePath("../DialogueManager")
+
+[node name="DialogueManager" type="Node" parent="." node_paths=PackedStringArray("dialogueWindow")]
+script = ExtResource("2_272bh")
 dialogueWindow = NodePath("../DialogueWindow")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(148, 73)
 speed = 100
+dashSpeed = 100
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(125, 25.000002)
@@ -48,5 +55,6 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Interactible" parent="NPC" instance=ExtResource("5_7mycd")]
+dialogueResource = ExtResource("7_5vw27")
 
 [node name="DialogueWindow" parent="." instance=ExtResource("5_272bh")]

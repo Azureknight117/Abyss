@@ -6,15 +6,10 @@ public partial class Player : CharacterBody2D
     [Export]
     public int speed { get; set; } = 50;
 
+    [Export]
+    public int dashSpeed = 15;
+
     private bool moving = false;
-
-    [Export]
-    public int bulletSpeed { get; set; } = 750;
-
-    [Export]
-    public int bulletDamage { get; set; } = 1;
-
-    public int extraBulletDamage = 0;
 
     [Export]
     public int maxHP = 3;
@@ -52,9 +47,6 @@ public partial class Player : CharacterBody2D
     private CharacterBody2D knockBackSource;
 
     [Export]
-    private AudioStreamPlayer2D bulletSfx;
-
-    [Export]
     private AudioStreamPlayer2D hurtSfx;
 
     [Export]
@@ -74,11 +66,15 @@ public partial class Player : CharacterBody2D
 
     public override void _Process(double delta)
     {
+        if (GameManager.GamePaused)
+            return;
         GetInput(delta);
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if (GameManager.GamePaused)
+            return;
         Velocity = GetInput(delta);
         var collision = MoveAndCollide(Velocity * (float)delta);
         if (collision != null)
@@ -107,6 +103,7 @@ public partial class Player : CharacterBody2D
         if (!canControl)
             return Vector2.Zero;
 
+        int dashValue = 0;
         Vector2 velocity = Vector2.Zero; // The player's movement vector.
         if (canMove)
         {
@@ -135,6 +132,11 @@ public partial class Player : CharacterBody2D
                 //Shoot();
             }
 
+            if (Input.IsActionPressed("dash"))
+            {
+                dashValue = dashSpeed;
+            }
+
             if (Input.IsActionJustPressed("interact"))
             {
                 if (interactingObject != null)
@@ -158,8 +160,7 @@ public partial class Player : CharacterBody2D
             animationTree.Set("parameters/Walk/BlendSpace2D/blend_position", velocity);
         }
 
-        //Position += velocity * speed * (float)delta;
-        return velocity * speed;
+        return velocity * (speed + dashValue);
 
     }
 
@@ -250,22 +251,6 @@ public partial class Player : CharacterBody2D
     {
         maxHP += upgradeAmount;
         ChangeHP(maxHP - curHP);
-    }
-
-    public async void BuffDamage(int buffAmount, float buffTime)
-    {
-        extraBulletDamage = buffAmount;
-        await ToSignal(GetTree().CreateTimer(buffTime), SceneTreeTimer.SignalName.Timeout);
-        extraBulletDamage = 0;
-    }
-
-
-    public void CreateDagger()
-    {
-        //var d = (Dagger)dagger.Instantiate();
-        //daggerHolder.AddChild(d);
-        //hasSuperPower = true;
-        //daggerRef = d;
     }
 
 }

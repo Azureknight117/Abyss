@@ -1,14 +1,18 @@
 using Godot;
 using System;
-
+using Godot.Collections;
 public partial class GameManager : Node
 {
 	static public GameManager Instance;
 
 	private Player playerRef;
 
+	static public bool GamePaused = false;
+
+	private bool dialogueBoxOpened;
+
 	[Export]
-	private DialogueWindow dialogueWindow;
+	private DialogueManager dialogueManager;
 
 
 	public override void _Ready()
@@ -17,20 +21,27 @@ public partial class GameManager : Node
 			Instance = this;
 		else
 			this.QueueFree();
-
-
-		dialogueWindow.Visible = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
+
+
 	}
 
 
-	public void ShowDialogueBox(string text)
+	public void StartDialogue(DialogueResource dResource)
 	{
-		dialogueWindow.Visible = true;
-		dialogueWindow.SetText(text);
+		dialogueManager.BeginDialogue(dResource);
+		dialogueBoxOpened = true;
+		GamePaused = true;
+	}
+
+	public void EndDialogue()
+	{
+		dialogueBoxOpened = false;
+		GamePaused = false;
 	}
 }
